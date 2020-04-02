@@ -1,18 +1,30 @@
-import React, { useEffect } from "react";
+import React, { useEffect, Fragment } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { getMovies } from "../../actions/movie";
 import MovieItem from "./MovieItem";
 
-const Movies = ({ getMovies, movie: { movies } }) => {
+const Movies = ({ getMovies, movie: { movies, error } }) => {
   return (
-    <div className="row row-cols-2 row-cols-md-4">
+    <Fragment>
       {movies.length > 0 ? (
-        movies.map(movie => <MovieItem movie={movie} />)
+        <Fragment>
+          <div className="row row-cols-2 row-cols-md-4">
+            {movies.map(movie => (
+              <MovieItem movie={movie} />
+            ))}
+          </div>
+        </Fragment>
       ) : (
-        <h4>No movie found</h4>
+        <Fragment>
+          {error ? (
+            <h4 className="text-center">No movie(s) found</h4>
+          ) : (
+            <h4 className="text-center">Search over 1 million movie titles</h4>
+          )}
+        </Fragment>
       )}
-    </div>
+    </Fragment>
   );
 };
 

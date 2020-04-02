@@ -4,6 +4,7 @@ import "./App.css";
 import Navbar from "./components/layout/Navbar";
 import Search from "./components/layout/Search";
 import Movies from "./components/layout/Movies";
+import Movie from "./components/layout/Movie";
 import { Provider } from "react-redux";
 import store from "./store";
 
@@ -12,10 +13,12 @@ const App = () => (
     <Router>
       <Fragment>
         <Navbar />
-
         <section className="container">
           <Search />
-          <Movies />
+          <Switch>
+            <Route exact path="/movies" component={Movies} />
+            <Route exact path="/movie/:id" component={Movie} />
+          </Switch>
         </section>
       </Fragment>
     </Router>
