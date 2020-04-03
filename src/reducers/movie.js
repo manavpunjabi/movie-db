@@ -2,8 +2,8 @@ import { GET_MOVIES, GET_MOVIE, MOVIE_ERROR } from "../actions/types";
 
 const initialState = {
   movies: [],
-  error: false,
-  movie: {}
+  movie: {},
+  error: false
 };
 
 export default function(state = initialState, action) {
@@ -12,16 +12,22 @@ export default function(state = initialState, action) {
     case GET_MOVIES:
       return {
         ...state,
-        movies: payload.Search
+        movies: payload.Search,
+        movie: {},
+        error: false
       };
     case GET_MOVIE:
       return {
         ...state,
-        movie: payload
+        movie: payload,
+        movies: [],
+        error: false
       };
     case MOVIE_ERROR:
       return {
         ...state,
+        movies: [],
+        movie: {},
         error: true
       };
     default:

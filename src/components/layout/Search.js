@@ -4,19 +4,13 @@ import { getMovies } from "../../actions/movie";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
-const Search = ({ getMovies, history }) => {
+const Search = ({ getMovies }) => {
   const [text, setText] = useState("");
 
   return (
     <Fragment>
       <h1 className="text-primary text-center">Movie Finder</h1>
-      <form
-        onSubmit={e => {
-          e.preventDefault();
-          getMovies(text);
-          setText("");
-        }}
-      >
+      <form>
         <div className="form-group">
           <input
             type="text"
@@ -27,11 +21,12 @@ const Search = ({ getMovies, history }) => {
             onChange={e => setText(e.target.value)}
             required
           />
-          <input
-            type="submit"
+          <Link
+            to={`/movies/${text}`}
             className="btn btn-primary my-1 btn-lg btn-block"
-            value="Search"
-          />
+          >
+            Search
+          </Link>
         </div>
       </form>
     </Fragment>

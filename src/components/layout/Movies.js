@@ -1,27 +1,25 @@
 import React, { useEffect, Fragment } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { getMovies } from "../../actions/movie";
 import MovieItem from "./MovieItem";
+import Spinner from "./Spinner";
+import { getMovies } from "../../actions/movie";
 
-const Movies = ({ getMovies, movie: { movies, error } }) => {
+const Movies = ({ getMovies, match, movie: { movies, error, loading } }) => {
+  useEffect(() => {
+    getMovies(match.params.search);
+  }, [getMovies, match.params.search]);
   return (
     <Fragment>
       {movies.length > 0 ? (
-        <Fragment>
-          <div className="row row-cols-2 row-cols-md-4">
-            {movies.map(movie => (
-              <MovieItem movie={movie} />
-            ))}
-          </div>
-        </Fragment>
+        <div className="row row-cols-2 row-cols-md-4">
+          {movies.map(movie => (
+            <MovieItem movie={movie} />
+          ))}
+        </div>
       ) : (
         <Fragment>
-          {error ? (
-            <h4 className="text-center">No movie(s) found</h4>
-          ) : (
-            <h4 className="text-center">Search over 1 million movie titles</h4>
-          )}
+          {error ? <h4 className="text-center">No movie(s) found</h4> : <></>}
         </Fragment>
       )}
     </Fragment>
@@ -29,12 +27,12 @@ const Movies = ({ getMovies, movie: { movies, error } }) => {
 };
 
 Movies.propTypes = {
-  getMovies: PropTypes.func.isRequired,
   movie: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
-  movie: state.movie
+  movie: state.movie,
+  getMovies: PropTypes.func.isRequired
 });
 
 export default connect(mapStateToProps, { getMovies })(Movies);
