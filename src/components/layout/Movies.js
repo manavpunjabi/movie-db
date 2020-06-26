@@ -2,7 +2,6 @@ import React, { useEffect, Fragment } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import MovieItem from "./MovieItem";
-import Spinner from "./Spinner";
 import { getMovies } from "../../actions/movie";
 
 const Movies = ({ getMovies, match, movie: { movies, error, loading } }) => {
@@ -13,7 +12,7 @@ const Movies = ({ getMovies, match, movie: { movies, error, loading } }) => {
     <Fragment>
       {movies.length > 0 ? (
         <div className="row row-cols-2 row-cols-md-4">
-          {movies.map(movie => (
+          {movies.map((movie) => (
             <MovieItem movie={movie} />
           ))}
         </div>
@@ -27,12 +26,12 @@ const Movies = ({ getMovies, match, movie: { movies, error, loading } }) => {
 };
 
 Movies.propTypes = {
-  movie: PropTypes.object.isRequired
+  movie: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   movie: state.movie,
-  getMovies: PropTypes.func.isRequired
+  getMovies: PropTypes.func.isRequired,
 });
 
 export default connect(mapStateToProps, { getMovies })(Movies);

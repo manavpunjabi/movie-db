@@ -32,29 +32,32 @@ const Movie = ({
   }, [getMovie, match.params.id]);
   return (
     <Fragment>
-      <img
-        src={Poster}
-        alt=""
-        className="float-left"
-        style={{ height: "300px", width: "200px" }}
-      />
-      <div className="float-right">
-        <h5>{Title}</h5>
-        <p>Actors: {Actors}</p>
-        <p>Director: {Director}</p>
-        <p>Writer: {Writer}</p>
-        <p>Runtime: {Runtime}</p>
-        <p>Genre: {Genre}</p>
-        <p>Language: {Language}</p>
-        <p>Country: {Country}</p>
-        <p>Awards: {Awards}</p>
-        <p>BoxOffice: {BoxOffice}</p>
-        <p>Production: {Production}</p>
-        <p>IMDB Rating: {imdbRating}</p>
-        <p>Plot: {Plot}</p>
-        <p>
-          <small className="text-muted">Year: {Year}</small>
-        </p>
+      <div className="row">
+        <div className="col-sm">
+          <img
+            src={Poster}
+            alt=""
+            style={{ height: "600px", width: "400px" }}
+          />
+        </div>
+        <div className="col-sm">
+          <h5>{Title}</h5>
+          <p>
+            <small className="text-muted">Year: {Year}</small>
+          </p>
+          <p>Actors: {Actors}</p>
+          <p>Director: {Director}</p>
+          <p>Writer: {Writer}</p>
+          <p>Runtime: {Runtime}</p>
+          <p>Genre: {Genre}</p>
+          <p>Language: {Language}</p>
+          <p>Country: {Country}</p>
+          <p>Awards: {Awards}</p>
+          <p>BoxOffice: {BoxOffice}</p>
+          <p>Production: {Production}</p>
+          <p>IMDB Rating: {imdbRating}</p>
+          <p>Plot: {Plot}</p>
+        </div>
       </div>
     </Fragment>
   );
